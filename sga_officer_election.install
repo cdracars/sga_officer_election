@@ -1,0 +1,79 @@
+<?php
+
+function sga_officer_election_schema() {
+  $schema['sga_officer_vote_check'] = array( 
+    'description' => 'check to see if voted',
+    'fields' => array(
+      'uid' => array(
+        'type' => 'int',
+        'description' => 'user id',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+      'president' => array(
+        'type' => 'int',
+        'description' => 'President ID',
+        'unsigned' => TRUE,
+      ),
+      'vice_president' => array(
+        'type' => 'int',
+        'description' => 'Vice President ID',
+        'unsigned' => TRUE,
+      ),
+      'treasurer' => array(
+        'type' => 'int',
+        'description' => 'Treasuer ID',
+        'unsigned' => TRUE,
+      ),
+      'secretary' => array(
+        'type' => 'int',
+        'description' => 'Secretary ID',
+        'unsigned' => TRUE,
+      ),
+      'f_ward' => array(
+        'type' => 'int',
+        'description' => 'Fresaman Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'sp_ward' => array(
+        'type' => 'int',
+        'description' => 'Sophmore Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'j_ward' => array(
+        'type' => 'int',
+        'description' => 'Junior Ward ID',
+        'unsigned' => TRUE,
+      ),
+      's_ward' => array(
+        'type' => 'int',
+        'description' => 'Senior Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'dah_ward' => array(
+        'type' => 'int',
+        'description' => 'Department of Arts and Humanities Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'dssb_ward' => array(
+        'type' => 'int',
+        'description' => 'Department of Socical Science and Business Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'dsp_ward' => array(
+        'type' => 'int',
+        'description' => 'Department of Science and Physical Education Ward ID',
+        'unsigned' => TRUE,
+      ),
+      'desp_ward' => array(
+        'type' => 'int',
+        'description' => 'Department of Education and Speech Language Ward ID',
+        'unsigned' => TRUE,
+      ),
+    ),
+    'primary key' => array('uid'),
+  );
+
+  return $schema;
+}

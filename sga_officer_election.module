@@ -1,0 +1,205 @@
+<?php
+function sga_officer_election_menu() {
+  $items = array();
+  $items['sga_officer_election/form'] = array(
+    'title' => t('SGA Officer Election'),
+    'page callback' => 'sga_officer_election_form',
+    'access callback' => 'user_check_permission',
+    'description' => t('SGA Officer Election'),
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+function user_check_permission() {
+  global $user;
+  $uid = $user->uid;
+  
+  $result = db_select('sga_officer_vote_check', 'sga')
+    ->fields('sga', array('uid'))
+    ->condition('uid', $uid)
+    ->execute()
+    ->fetchField();
+
+  if ($result || $uid == 0) {
+    return FALSE;
+  } 
+    return TRUE;
+}
+function sga_officer_election_form() {
+  return drupal_get_form('sga_officer_election_my_form');
+}
+function sga_officer_election_my_form($form_state) {
+  global $user;
+
+  $president = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+  $form['settings']['president'] = array(
+    '#type' => 'radios',
+    '#title' => t('SGA President'),
+    '#default_value' => isset($node->president) ? $node->president : 0,
+    '#options' => $president,
+    '#required' => TRUE,
+  );
+
+  $vice_president = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+  $form['settings']['vice_president'] = array(
+    '#type' => 'radios',
+    '#title' => t('SGA Vice President'),
+    '#default_value' => isset($node->vice_president) ? $node->vice_president : 0,
+    '#options' => $vice_president,
+    '#required' => TRUE,
+  );
+
+  $secretary = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+  $form['settings']['secretary'] = array(
+    '#type' => 'radios',
+    '#title' => t('SGA Secretary'),
+    '#default_value' => isset($node->secretary) ? $node->secretary : 0,
+    '#options' => $secretary,
+    '#required' => TRUE,
+  );
+
+  $treasurer = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+  $form['settings']['treasurer'] = array(
+    '#type' => 'radios',
+    '#title' => t('SGA Treasurer'),
+    '#default_value' => isset($node->treasurer) ? $node->treasurer : 0,
+    '#options' => $treasurer,
+    '#required' => TRUE,
+  );
+
+  if (in_array('Freshman', $user->roles)) {
+    $f_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['f_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Freshman Ward'),
+      '#default_value' => isset($node->f_ward) ? $node->f_ward : 0,
+      '#options' => $f_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Sophmore', $user->roles)) {
+    $sp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['sp_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Sophmore Ward'),
+      '#default_value' => isset($node->sp_ward) ? $node->sp_ward : 0,
+      '#options' => $sp_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Junior', $user->roles)) {
+    $j_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['j_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Junior Ward'),
+      '#default_value' => isset($node->j_ward) ? $node->j_ward : 0,
+      '#options' => $j_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Senior', $user->roles)) {
+    $s_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['s_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Senior Ward'),
+      '#default_value' => isset($node->s_ward) ? $node->s_ward : 0,
+      '#options' => $s_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Divison of Arts and Humanities', $user->roles)) {
+    $dah_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['dah_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Division of Arts and Humanities Ward'),
+      '#default_value' => isset($node->dah_ward) ? $node->dah_ward : 0,
+      '#options' => $dah_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Divison of Buisness and Social Science', $user->roles)) {
+    $dssb_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['dssb_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Division of Social Science and Buisness Ward'),
+      '#default_value' => isset($node->dssb_ward) ? $node->dssb_ward : 0,
+      '#options' => $dssb_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Divison of Science and Physical Education', $user->roles)) {
+    $dsp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['dsp_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Division of Science and Physical Education Ward'),
+      '#default_value' => isset($node->dsp_ward) ? $node->dsp_ward : 0,
+      '#options' => $dsp_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  if (in_array('Divison of Education and Speech Language Pathology', $user->roles)) {
+    $desp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+
+    $form['settings']['desp_ward'] = array(
+      '#type' => 'radios',
+      '#title' => t('SGA Division of Education and Speech Pathology Ward'),
+      '#default_value' => isset($node->desp_ward) ? $node->desp_ward : 0,
+      '#options' => $desp_ward,
+      '#required' => TRUE,
+    );
+  }
+
+  $form['submit'] = array(
+    '#type' => 'submit',
+    '#value' => 'Submit',
+  );
+  return $form;
+}
+/*function sga_officer_election_my_form_validate($form, &$form_state) {
+    $year_of_birth = $form_state['values']['year_of_birth'];
+    if ($year_of_birth && ($year_of_birth < 1900 || $year_of_birth > 2000)) {
+        form_set_error('year_of_birth', 'Enter a year between 1900 and 2000.');
+    }
+}*/
+// Adds a submit handler/function to our form to send a successful
+// completion message to the screen.
+function sga_officer_election_my_form_submit($form, &$form_state) {
+//watchdog('DB Query', '<pre>' . print_r($result, TRUE) . '</pre>');
+    global $user;
+    db_insert('sga_officer_vote_check')
+      ->fields(array(
+        'uid' => $user->uid,
+        'president' => $form_state['values']['president'],
+        'vice_president' => $form_state['values']['vice_president'],
+        'treasurer' => $form_state['values']['treasurer'],
+        'secretary' => $form_state['values']['secretary'],
+        'f_ward' => $form_state['values']['f_ward'],
+        'sp_ward' => $form_state['values']['sp_ward'],
+        'j_ward' => $form_state['values']['j_ward'],
+        's_ward' => $form_state['values']['s_ward'],
+        'dah_ward' => $form_state['values']['dah_ward'],
+        'dssb_ward' => $form_state['values']['dssb_ward'],
+        'dsp_ward' => $form_state['values']['dsp_ward'],
+        'desp_ward' => $form_state['values']['desp_ward'],
+      ))
+      ->execute();
+    drupal_set_message(t('The form has been submitted.'));
+}
