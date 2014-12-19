@@ -31,137 +31,127 @@ function sga_officer_election_form() {
 function sga_officer_election_my_form($form_state) {
   global $user;
 
-  $president = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+  $president = array(0 => t('Luke Doane'), 1 => t('Deborah Park'), 2 => t('None of the Above'));
 
   $form['settings']['president'] = array(
     '#type' => 'radios',
     '#title' => t('SGA President'),
-    '#default_value' => isset($node->president) ? $node->president : 0,
+    '#default_value' => isset($node->president) ? $node->president : 2,
     '#options' => $president,
     '#required' => TRUE,
   );
 
-  $vice_president = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+  $vice_president = array(0 => t('Maite Miller'), 1 => t('Jennifer Stewart'), 2 => t('None of the Above'));
 
   $form['settings']['vice_president'] = array(
     '#type' => 'radios',
     '#title' => t('SGA Vice President'),
-    '#default_value' => isset($node->vice_president) ? $node->vice_president : 0,
+    '#default_value' => isset($node->vice_president) ? $node->vice_president : 2,
     '#options' => $vice_president,
     '#required' => TRUE,
   );
 
-  $secretary = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+  $secretary = array(0 => t('Sabrina Atkinson'), 1 => t('None of the Above'));
 
   $form['settings']['secretary'] = array(
     '#type' => 'radios',
     '#title' => t('SGA Secretary'),
-    '#default_value' => isset($node->secretary) ? $node->secretary : 0,
+    '#default_value' => isset($node->secretary) ? $node->secretary : 1,
     '#options' => $secretary,
     '#required' => TRUE,
   );
 
-  $treasurer = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+  $treasurer = array(0 => t('Allison Collins'), 1 => t('None of the Above'));
 
   $form['settings']['treasurer'] = array(
     '#type' => 'radios',
     '#title' => t('SGA Treasurer'),
-    '#default_value' => isset($node->treasurer) ? $node->treasurer : 0,
+    '#default_value' => isset($node->treasurer) ? $node->treasurer : 1,
     '#options' => $treasurer,
     '#required' => TRUE,
   );
 
-  if (in_array('Freshman', $user->roles)) {
-    $f_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
-
-    $form['settings']['f_ward'] = array(
-      '#type' => 'radios',
-      '#title' => t('SGA Freshman Ward'),
-      '#default_value' => isset($node->f_ward) ? $node->f_ward : 0,
-      '#options' => $f_ward,
-      '#required' => TRUE,
-    );
-  }
-
   if (in_array('Sophmore', $user->roles)) {
-    $sp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $sp_ward = array(0 => t('Madison Russell'), 1 => t('Julie Ladd'), 2 => t('Jennie Linck'), 3 => t('Allison Collins'), 
+                     4 => t('Logan Webb'), 5 => t('Ethan Steakley'), 6 => t('Savio Solomon'), 7 => t('Alex Hortal'), 8 => t('None of the Above'));
 
     $form['settings']['sp_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Sophmore Ward'),
-      '#default_value' => isset($node->sp_ward) ? $node->sp_ward : 0,
+      '#default_value' => isset($node->sp_ward) ? $node->sp_ward : 8,
       '#options' => $sp_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Junior', $user->roles)) {
-    $j_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $j_ward = array(0 => t('Deborah Park'), 1 => t('Maite Miller'), 3 => t('Bethany Larson'), 4 => t('Steven Farr'), 5 => t('None of the Above'));
 
     $form['settings']['j_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Junior Ward'),
-      '#default_value' => isset($node->j_ward) ? $node->j_ward : 0,
+      '#default_value' => isset($node->j_ward) ? $node->j_ward : 5,
       '#options' => $j_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Senior', $user->roles)) {
-    $s_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $s_ward = array(0 => t('Matt Crow'), 1 => t('Luke Doane'), 2 => t('Sara Gibbs'), 3 => t('Amanda Robinson'), 4 => t('Jennier Stewart'), 5 => t('None of the Above'));
 
     $form['settings']['s_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Senior Ward'),
-      '#default_value' => isset($node->s_ward) ? $node->s_ward : 0,
+      '#default_value' => isset($node->s_ward) ? $node->s_ward : 5,
       '#options' => $s_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Divison of Arts and Humanities', $user->roles)) {
-    $dah_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $dah_ward = array(0 => t('Logan Webb'), 1 => t('Savio Solomon'), 2 => t('None of the Above'));
 
     $form['settings']['dah_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Division of Arts and Humanities Ward'),
-      '#default_value' => isset($node->dah_ward) ? $node->dah_ward : 0,
+      '#default_value' => isset($node->dah_ward) ? $node->dah_ward : 2,
       '#options' => $dah_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Divison of Buisness and Social Science', $user->roles)) {
-    $dssb_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $dssb_ward = array(0 => t('Deborah Park'), 1 => t('Luke Doane'), 2 => t('Julie Ladd'), 3 => t('Allison Collins'),
+                       4 => t('Sara Gibbs'), 5 => t('Amanda Robinson'), 6 => t('None of the Above'));
 
     $form['settings']['dssb_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Division of Social Science and Buisness Ward'),
-      '#default_value' => isset($node->dssb_ward) ? $node->dssb_ward : 0,
+      '#default_value' => isset($node->dssb_ward) ? $node->dssb_ward : 6,
       '#options' => $dssb_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Divison of Science and Physical Education', $user->roles)) {
-    $dsp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $dsp_ward = array(0 => t('Maite Miller'), 1 => t('Bethany Larson'), 2 => t('Jennie Linck'), 3 => t('None of the Above'));
 
     $form['settings']['dsp_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Division of Science and Physical Education Ward'),
-      '#default_value' => isset($node->dsp_ward) ? $node->dsp_ward : 0,
+      '#default_value' => isset($node->dsp_ward) ? $node->dsp_ward : 3,
       '#options' => $dsp_ward,
       '#required' => TRUE,
     );
   }
 
   if (in_array('Divison of Education and Speech Language Pathology', $user->roles)) {
-    $desp_ward = array(0 => t('John Doe'), 1 => t('Jane Doe'));
+    $desp_ward = array(0 => t('Bethany Larson'), 1 => t('Jennie Linck'), 2 => t('None of the Above'));
 
     $form['settings']['desp_ward'] = array(
       '#type' => 'radios',
       '#title' => t('SGA Division of Education and Speech Pathology Ward'),
-      '#default_value' => isset($node->desp_ward) ? $node->desp_ward : 0,
+      '#default_value' => isset($node->desp_ward) ? $node->desp_ward : 2,
       '#options' => $desp_ward,
       '#required' => TRUE,
     );
